@@ -4,16 +4,16 @@ import * as Sentry from "@sentry/react";
 // import { startTransaction, Span } from "@sentry/tracing"; // 正确导入startTransaction
 
 function App() {
-  console.log("2");
   useEffect(() => {
     // 捕获自定义事件
-    Sentry.captureMessage("用户点击了按钮", Sentry.Severity.Info);
+    Sentry.captureMessage("用户点击了按钮4", Sentry.Severity.Info);
+    console.log("222222");
 
     // 模拟一个错误并捕获它
     try {
       throw new Error("这是一个模拟错误");
     } catch (error) {
-      Sentry.captureException(error);
+      // Sentry.captureException(error);
     }
 
     return () => {};
@@ -29,14 +29,14 @@ function App() {
 
   const handleClick = () => {
     // 在按钮点击时也可以发送自定义事件
-    Sentry.captureMessage("按钮被点击了");
+    Sentry.captureMessage("按钮被点击了3");
     console.log("111");
   };
   const handleClick2 = async () => {
     const transaction = Sentry.startTransaction({ name: "测试事务" });
-    const span = transaction.startChild({ op: "functionX" }); // This function returns a Span
+    const span = transaction.startChild({ op: "functionX" }); // functionX 是一个标记  可以随便取
     await simulateAPIRequest();
-    span.finish(); // Remember that only finished spans will be sent with the transaction
+    span.finish();
     transaction.finish();
   };
 

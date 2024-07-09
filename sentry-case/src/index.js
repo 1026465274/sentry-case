@@ -6,8 +6,6 @@ import reportWebVitals from "./reportWebVitals";
 import * as Sentry from "@sentry/react";
 import { BrowserTracing } from "@sentry/tracing";
 
-console.log(Sentry);
-
 Sentry.init({
   dsn: "https://e3e30d46cd432c3a70e9273c278a6fe8@o4507497708716032.ingest.us.sentry.io/4507497787293696",
   integrations: [new BrowserTracing()],
@@ -19,7 +17,6 @@ Sentry.init({
   // Set `tracePropagationTargets` to control for which URLs distributed tracing should be enabled
   tracePropagationTargets: ["localhost", /^https:\/\/yourserver\.io\/api/],
 });
-console.log("11");
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
